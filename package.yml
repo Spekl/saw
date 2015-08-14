@@ -1,5 +1,5 @@
 name       : saw          # name of the package
-version    : 0.1.1-1      # version of the package
+version    : 0.1.1-2      # version of the package
 kind       : tool         # one of tool or spec(s)
 description: The Software Analysis Workbench (SAW) provides the ability to formally verify properties of code written in C, Java, and Cryptol.
 
@@ -31,7 +31,7 @@ assumes:
     matches: CentOS release 6.*
     message: "Sorry, but on Linux only CentOS is supported at the moment."
     platform: linux
-  - cmd: clang -version
+  - cmd: clang -v
     matches: LLVM 3.*
     message: "Please install a recent version of the CLANG compiler."
     platform: all
