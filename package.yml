@@ -1,5 +1,5 @@
 name       : saw          # name of the package
-version    : 0.1.1-3      # version of the package
+version    : 0.1.1-4      # version of the package
 kind       : tool         # one of tool or spec(s)
 description: The Software Analysis Workbench (SAW) provides the ability to formally verify properties of code written in C, Java, and Cryptol.
 
@@ -15,6 +15,10 @@ assets:
     - asset   : MAIN
       name    : SAW Binaries for Windows 
       url     : https://github.com/GaloisInc/saw-script/releases/download/v0.1.1-dev/saw-0.1.1-dev-2015-07-31-Windows7Pro-32.zip 
+      platform: windows
+    - asset   : CVC4
+      name    : CVC4 SMT Solver (Standalone)
+      url     : http://cvc4.cs.nyu.edu/builds/win32-opt/cvc4-1.4-win32-opt.exe
       platform: windows
     - asset   : MAIN
       name    : SAW Binaries for Linux
@@ -43,6 +47,9 @@ install:
     platform: windows
   - cmd: "mv saw*-32 saw-dist"
     description: Organizing Package...
+    platform: windows
+  - cmd: "mv CVC4 saw-dist/bin/cvc4.exe"
+    description: Installing CVC4 into SAW...
     platform: windows
   - cmd: tar -zxvf MAIN
     description: Unpacking distribution...
