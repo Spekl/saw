@@ -1,6 +1,6 @@
 name       : saw          # name of the package
-version    : 0.1.1-1       # version of the package
-kind       : tool                     # one of tool or spec(s)
+version    : 0.1.1-1      # version of the package
+kind       : tool         # one of tool or spec(s)
 description: The Software Analysis Workbench (SAW) provides the ability to formally verify properties of code written in C, Java, and Cryptol.
 
 author:
@@ -8,44 +8,52 @@ author:
     email: jsinglet@gmail.com
 
 
-
-# a list of the named and versioned packages that must be installed before
-# installing 
-# depends:                               
-#   - package   : other-package   # represents a package that MUST be installed
-#     version   : 1.1.1
-#     platform  : all 
-#   - package   : other-package
-#     version   : 1.1.1
-#   - one-of:                     # at least one of these must be installed  
-#       - package: z3
-#         version: 1.1.2
-#         platform: all
-#       - package: why3
-#         version: 1.1.2
-#         platform: all
-
-#
-# assets that make up THIS package
-#
-
-# assets:
-#     - asset   : MAIN
-#       name    : my-asset
-#       url     : http://www.openjml.org/downloads/1.1.2.tar.gz  
-#       platform: all
-        
-# assumes:
-#   - cmd: java --version # right now just support cmd -- maybe file exists?
-#     contains: 1.7
-#     message: "Sorry, but this package requires Java, version 1.7 or higher."
+# TODO: add other SMT solvers
 
 
-# downloads everything to the .
-# install:
-#   - cmd: tar zxvf MAIN
-#     description: What this command does
-#     platform: all
-#   - cmd: tar zxvf $MAIN
-#     description: What this command does...
-#     platform: windows
+assets:
+    - asset   : MAIN
+      name    : SAW Binaries for Windows 
+      url     : https://github.com/GaloisInc/saw-script/releases/download/v0.1.1-dev/saw-0.1.1-dev-2015-07-31-Windows7Pro-32.zip 
+      platform: windows
+    - asset   : MAIN
+      name    : SAW Binaries for Linux
+      url     : https://github.com/GaloisInc/saw-script/releases/download/v0.1.1-dev/saw-0.1.1-dev-2015-07-31-CentOS6-64.tar.gz  
+      platform: linux
+    - asset   : MAIN
+      name    : SAW Binaries for OSX
+      url     : https://github.com/GaloisInc/saw-script/releases/download/v0.1.1-dev/saw-0.1.1-dev-2015-07-31-OSX-64.tar.gz  
+      platform: osx
+
+
+assumes:
+  - cmd: cat /etc/redhat-release
+    matches: CentOS release 6.*
+    message: "Sorry, but on Linux only CentOS is supported at the moment."
+    platform: linux
+  - cmd: clang -version
+    matches: LLVM 3.*
+    message: "Please install a recent version of the CLANG compiler."
+    platform: all
+    
+
+install:
+  - cmd: unzip MAIN
+    description: Unpacking distribution...
+    platform: windows
+  - cmd: "mv saw*-32 saw-dist"
+    description: Organizing Package...
+    platform: windows
+  - cmd: tar -zxvf MAIN
+    description: Unpacking distribution...
+    platform: linux
+  - cmd: "mv saw*-64 saw-dist"
+    description: Organizing Package...
+    platform: linux
+  - cmd: tar -zxvf MAIN
+    description: Unpacking distribution...
+    platform: osx
+  - cmd: "mv saw*-64 saw-dist"
+    description: Organizing Package...
+    platform: osx
+
