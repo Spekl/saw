@@ -1,5 +1,5 @@
 name       : saw          # name of the package
-version    : 0.1.1-4      # version of the package
+version    : 0.1.1-5      # version of the package
 kind       : tool         # one of tool or spec(s)
 description: The Software Analysis Workbench (SAW) provides the ability to formally verify properties of code written in C, Java, and Cryptol.
 
@@ -48,7 +48,7 @@ install:
   - cmd: "mv saw*-32 saw-dist"
     description: Organizing Package...
     platform: windows
-  - cmd: "mv CVC4 saw-dist/bin/cvc4.exe"
+  - cmd: "cp CVC4 saw-dist/bin/cvc4.exe"
     description: Installing CVC4 into SAW...
     platform: windows
   - cmd: tar -zxvf MAIN
